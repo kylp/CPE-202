@@ -9,7 +9,7 @@ Instructions:
 import random
 
 #implement BSTNode class and get,contains,insert,delete functions in bst.py
-import bst_rev as bst
+import bst as bst
 
 #classmate.py is implemented for you
 from classmate import classmate_factory 
@@ -150,7 +150,7 @@ class TreeMap:
         # complete this method by calling bst.inorder_list()
         # return a list of BST keys representing ineorder traversal of BST
         #---------------
-        return bst.inorder_list(self.tree)
+        return bst.inorder_list(self.tree, [])
 
     def preorder_list(self):
         """returns a list of keys representing pre-order traversal of tree(bst)
@@ -161,7 +161,7 @@ class TreeMap:
         # complete this method by calling bst.preorder_list()
         # return a list of BST keys representing preorder traversal of BST
         #---------------
-        return bst.preorder_list(self.tree)
+        return bst.preorder_list(self.tree, [])
 
     def tree_height(self):
         """returns the height of the tree or -1 if the tree is empty
@@ -237,8 +237,8 @@ def import_classmates(filename):
     #for each classmate in classmates
         #put the classmate into the tree_map using its sid as the key
     #---------- ----
-    for i in range (len(classmates)):
-        tree_map.put(classmate.sid, classmate)
+    for i in range(len(classmates)):
+        tree_map.put(classmates[i].sid, classmate)
     return tree_map
 
 

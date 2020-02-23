@@ -1,6 +1,6 @@
 import unittest
 
-import bst
+import bst as bst
 from lab5 import TreeMap, import_classmates, search_classmate
 
 class MyTest(unittest.TestCase):
@@ -21,9 +21,9 @@ class MyTest(unittest.TestCase):
         t = bst.insert(t, 2, 'two')
         t = bst.insert(t, 3, 'three')
         t = bst.insert(t, 1, 'one')
-        t = bst.insert(t, 7, 'seven')
         t = bst.insert(t, 5, 'five')
         t = bst.insert(t, 6, 'six')
+        t = bst.insert(t, 7, 'seven')
         self.assertEqual(bst.tree_height(t), 3)
 
     def test_bst3(self):
@@ -44,9 +44,9 @@ class MyTest(unittest.TestCase):
         t = bst.insert(t, 2, 'two')
         t = bst.insert(t, 3, 'three')
         t = bst.insert(t, 1, 'one')
-        t = bst.insert(t, 7, 'seven')
-        t = bst.insert(t, 5, 'five')
         t = bst.insert(t, 6, 'six')
+        t = bst.insert(t, 5, 'five')
+        t = bst.insert(t, 7, 'seven')
 
         t = bst.delete(t, 6)
         self.assertEqual(bst.tree_height(t), 2)
@@ -167,13 +167,12 @@ class MyTest(unittest.TestCase):
         self.assertEqual(t.tree.key, 5)
 
     def test_classmates(self):
-        #substitute the file name and the path with yours.
-        #filename = '/home/gradzilla/uploads/submissions/grader_programs/CPE202/Lab_5/classmates.tsv'
-        #t = import_classmates(filename)
-        #self.assertEqual(t.size(), 55)
-        #v = search_classmate(t, 24)
-        #self.assertEqual(v.major, 'CSC')
-        #self.assertRaises(KeyError, search_classmate, t, 0)
+        filename = '2202-cpe202-05.tsv'
+        t = import_classmates(filename)
+        self.assertEqual(t.size(), 38)
+        v = search_classmate(t, 24)
+        self.assertEqual(v.major, 'EE')
+        self.assertRaises(KeyError, search_classmate, t, 0)
         pass
 
 if __name__ == '__main__':
