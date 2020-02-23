@@ -31,6 +31,7 @@ class Classmate:
             and self.major == other.major\
             and self.year == other.year
 
+
 def classmate_factory(tokens):
     """Create a Classmate object by parsing tokens
 
