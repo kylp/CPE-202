@@ -30,12 +30,4 @@ def algotime(arrsize):
     print()
     return sort_time
 
-
-algotime(1000)
-algotime(2000)
-algotime(4000)
-algotime(8000)
-algotime(16000)
-algotime(32000)
-algotime(100000)
 algotime(500000)

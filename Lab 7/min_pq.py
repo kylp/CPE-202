@@ -8,6 +8,30 @@ Author:
 """
 
 
+def index_parent(index):
+    if index <= 0:
+        raise IndexError()
+    return (index - 1) // 2
+
+
+def index_left(index):
+    if index < 0:
+        raise IndexError()
+    return 2 * index + 1
+
+
+def index_right(index):
+    if index < 0:
+        raise IndexError()
+    return 2 * index + 2
+
+
+def index_minchild(arr, index, capacity):
+    if index_right(index) >= capacity:
+        return index_left(index)
+    
+
+
 class MinPQ:
     """Minimum Priority Queue
     Attributes:
@@ -15,10 +39,15 @@ class MinPQ:
         num_items (int): the number of items in the queue.
         arr (list): an array which contains the items in the queue.
     """
-    def __init__(self, capacity, num_items, arr=None):
-        self.capacity = capacity
-        self.num_items = num_items
-        self.arr = arr
+    def __init__(self, arr=None):
+        if arr is None:
+            self.capacity = 2
+            self.num_items = 0
+            self.arr = [None] * self.capacity
+        else:
+            self.capacity = len(arr)
+            self.num_items = len(arr)
+            self.arr = arr
 
     def __eq__(self, other):
         return isinstance(other, MinPQ) \
@@ -36,7 +65,8 @@ class MinPQ:
         Returns:
             None : it returns nothing
         """
-        length = len(arr)
+
+
 
     def insert(self, item):
         """inserts an item to the queue
