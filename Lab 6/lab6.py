@@ -4,34 +4,38 @@ import time
 
 
 def insertion_sort(arr):
+    comparisons = 0
     size = len(arr)
     for i in range(1, size):
         j = i
         while j > 0 and arr[j-1] > arr[j]:
             arr[j - 1], arr[j], = arr[j], arr[j-1]
             j -= 1
-    return arr
+            comparisons += 1
+        comparisons += 1
+    return arr, comparisons
 
 
 def algotime(arrsize):
-    print("Timing insertion sort on " + str(arrsize) + " items...")
+    print("Timing insertion sort on ", arrsize, " items...")
     random.seed(1)
     alist = list(range(arrsize))
     random.shuffle(alist)
     start_time = time.time()
-    insertion_sort(alist)
+    sorted_list, num_comp = insertion_sort(alist)
     end_time = time.time()
     sort_time = end_time - start_time
-    print("Done! Total time: " + str(sort_time))
+    print("Done! Total time: ", sort_time)
+    print("Number of comparisons made:", num_comp)
+    print()
     return sort_time
 
 
-print(algotime(1000))
-print(algotime(2000))
-print(algotime(4000))
-print(algotime(8000))
-print(algotime(16000))
-print(algotime(32000))
-print(algotime(100000))
-print(algotime(500000))
-
+algotime(1000)
+algotime(2000)
+algotime(4000)
+algotime(8000)
+algotime(16000)
+algotime(32000)
+algotime(100000)
+algotime(500000)
