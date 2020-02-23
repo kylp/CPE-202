@@ -9,7 +9,7 @@ Instructions:
 import random
 
 #implement BSTNode class and get,contains,insert,delete functions in bst.py
-import bst
+import bst_rev as bst
 
 #classmate.py is implemented for you
 from classmate import classmate_factory 
@@ -23,12 +23,10 @@ class TreeMap:
         self.num_items = 0
 
     def __repr__(self):
-        #Complete this method
-        pass
+        return 'TreeMap (%s, %d)' % (repr(self.tree), self.num_items)
 
     def __eq__(self, other):
-        #Complete this method
-        pass
+        return isinstance(other, TreeMap) and self.tree == other.tree and self.num_items == other.num_items
 
     def __getitem__(self, key):
         """implementing this method enables getting an item with [] notation
@@ -57,7 +55,7 @@ class TreeMap:
         """implementing this method enables checking if a key exists with in notaion
 
         Args:
-            key (any) : a key which is compareable by <,>,==
+            key (any) : a key which is comparable by <,>,==
         Returns:
             bool : True is the key exists, otherwise False 
         """
@@ -68,7 +66,7 @@ class TreeMap:
         Calls insert function in bst.py
 
         Args:
-            key (any) : a key which is compareable by <,>,==
+            key (any) : a key which is comparable by <,>,==
             val (any): the value associated with the key
         """
         #this method is already written for you
@@ -80,7 +78,7 @@ class TreeMap:
         Calls insert function in bst.py
 
         Args:
-            key (any) : a key which is compareable by <,>,==
+            key (any) : a key which is comparable by <,>,==
         Returns:
             any : the value associated with th key
         Raises:
@@ -92,87 +90,105 @@ class TreeMap:
     def contains(self, key):
         """Write the docstring
         Args:
-            key (any) : a key which is compareable by <,>,==
+            key (any) : a key which is comparable by <,>,==
         Returns:
             bool : True is the key exists, otherwise False 
         """
         #call a function in the bst module
-        pass
+        return bst.contains(self.tree, key)
 
     def delete(self, key):
         """Write the docstring
         Args:
-            key (any) : a key which is compareable by <,>,==
+            key (any) : a key which is comparable by <,>,==
         Raises:
             KeyError : if the key does not exist
         """
         #call a function in the bst module
         #and decrement the num_items
-        pass
+        return bst.delete(self.tree, key)
 
     def size(self):
         """returns the number of items in the map
         Returns:
             int : the number of items in the map
         """
-        pass
+        return self.num_items
 
     def find_min(self):
-        """Write the docstring
+        """returns the minimum key and the value associated
+        Returns:
+            any: minimum key
+            any: value at the aforementioned key
         """
         #---- to do ----
         # complete this method by calling bst.find_min()
         # return the key and the value associated with the smallest key in the tree
         # raise ValueError if the tree is empty
         #---------------
-        pass
+        return bst.find_min(self.tree)
 
     def find_max(self):
-        """Write the docstring
+        """returns the maximum key and the value associated
+        Returns:
+            any: max key
+            any: value at the aforementioned key
         """
         #---- to do ----
         # complete this method by calling bst.find_max()
         # return the key and the value associated with the largest key in the tree 
         # raise ValueError if the tree is empty
         #---------------
-        pass
+        return bst.find_max(self.tree)
 
     def inorder_list(self):
-        """Write the docstring
+        """returns a list of keys representing in-order traversal of tree(bst)
+        Returns:
+            list: a list of keys from inorder traversal of the tree
         """
         #---- to do ----
         # complete this method by calling bst.inorder_list()
         # return a list of BST keys representing ineorder traversal of BST
         #---------------
-        pass
+        return bst.inorder_list(self.tree)
 
     def preorder_list(self):
-        """Write the docstring
+        """returns a list of keys representing pre-order traversal of tree(bst)
+        Returns:
+            list: a list of keys from pre-order traversal of the tree
         """
         #---- to do ----
         # complete this method by calling bst.preorder_list()
         # return a list of BST keys representing preorder traversal of BST
         #---------------
-        pass
+        return bst.preorder_list(self.tree)
 
     def tree_height(self):
-        """Write the docstring
+        """returns the height of the tree or -1 if the tree is empty
+        Returns:
+            int: the height of the tree
         """
         #---- to do ----
         # complete this method by calling bst.tree_height()
         # return the height of the tree
         # return -1 if the tree is empty
         #---------------
-        pass
+        return bst.tree_height(self.tree)
 
     def range_search(self, lo, hi):
-        """Write the docstring
+        """returns a list of values that are within the given range
+        Args:
+            lo(int): lower limit of range
+            hi(int) higher limit of range
+        Returns:
+            list: the list of values within lo and hi
         """
         #---- to do ----
         # complete this method by calling bst.range_search()
         # return a list of values that fall within the given range
         #---------------
-        pass
+        return bst.range_search(self.tree, lo, hi)
+
 
 def import_classmates(filename):
     """Imports classmates from a tsv file
@@ -201,6 +217,11 @@ def import_classmates(filename):
         #classmate = classmate_factory(tokens)
         #append the classmate to a list classmates
     #---------- ----
+    with open(filename) as file:
+        lines = file.readlines()
+
+
+    classmate = classmate_factory(tokens)
 
     #shuffle the classmates
     random.seed(2)
