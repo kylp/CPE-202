@@ -219,9 +219,13 @@ def import_classmates(filename):
     #---------- ----
     with open(filename) as file:
         lines = file.readlines()
+    for line in lines:
+        tokens = line.split('\t')
+        classmate = classmate_factory(tokens)
+        classmates.append(classmate)
 
 
-    classmate = classmate_factory(tokens)
+
 
     #shuffle the classmates
     random.seed(2)
@@ -233,7 +237,10 @@ def import_classmates(filename):
     #for each classmate in classmates
         #put the classmate into the tree_map using its sid as the key
     #---------- ----
+    for i in range (len(classmates)):
+        tree_map.put(classmate.sid, classmate)
     return tree_map
+
 
 def search_classmate(tmap, sid):
     """Searches a classmate in a TreeMap using the sid as a key
