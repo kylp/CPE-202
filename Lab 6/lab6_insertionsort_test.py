@@ -1,7 +1,8 @@
+"""Test cases for insertion sort, written by Jae Park for CPE 202"""
 from unittest import TestCase
 import random
 
-from lab6 import insertion_sort
+from lab6_insertionsort import insertion_sort
 
 
 class Test(TestCase):
