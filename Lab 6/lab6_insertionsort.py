@@ -47,5 +47,6 @@ def algotime(arrsize):
     return sort_time
 
 
-# change value or call function multiple times for different array lengths
-algotime(500000)
+if __name__ == '__main__':
+    # change value or call function multiple times for different array lengths
+    algotime(500000)

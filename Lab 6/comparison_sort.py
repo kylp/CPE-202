@@ -23,6 +23,44 @@ def insertion_sort(arr):
     return arr, comparisons
 
 
+def quick_sort(items, lo, hi):
+    """Author: Jae Park
+    Quicksort algorthim that also counts number of comparisons.
+    Args:
+        items(list): list to be sorted
+        lo(int): lower bound
+        hi(int): upper bound
+    Returns:
+        int: number of comparisons
+    """
+    comparisons = 0
+    if lo >= hi:
+        return comparisons
+    mid = (lo + hi) // 2
+    pivot = items[mid]
+    lt, gt, i = lo, hi, lo
+    while i <= gt:
+        if items[i] < pivot:
+            temp = items[i]
+            items[i] = items[lt]
+            items[lt] = temp
+            i += 1
+            lt += 1
+            comparisons += 1
+        elif items[i] > pivot:
+            temp = items[i]
+            items[i] = items[gt]
+            items[gt] = temp
+            gt -= 1
+            comparisons += 2
+        else:
+            i += 1
+            comparisons += 2
+    comparisons += quick_sort(items, lo, lt - 1)
+    comparisons += quick_sort(items, gt + 1, hi)
+    return comparisons
+
+
 def algotime(arrsize):
     """ Author: Jae Park
     Takes in array size and returns the time it took to sort the array, along with the number of comparisons.
