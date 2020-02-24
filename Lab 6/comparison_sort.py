@@ -75,7 +75,7 @@ def algotime(arrsize):
     alist = list(range(arrsize))
     random.shuffle(alist)
     start_time = time.time()
-    sorted_list, num_comp = insertion_sort(alist)
+    sorted_list, num_comp = insertion_sort(alist)  # can change the algorithm to time others
     end_time = time.time()
     sort_time = end_time - start_time
     print("Done! Total time: ", sort_time)
