@@ -97,7 +97,12 @@ class HashTableSepchain:
         raise KeyError()
 
     def keys(self):
-        return self.array
+        keys = []
+        for node in self.array:
+            while node is not None:
+                keys.append(node.val.key)
+                node = node.next
+        return keys
 
     def resize(self, new_size):
         old_array = self.array
