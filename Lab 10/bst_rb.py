@@ -16,7 +16,7 @@ Author:
 
 
 class BSTNode:
-    def __init__(self, key, val, left=None, right=None, color='r'):
+    def __init__(self, key, val, left=None, right=None, color='red'):
         self.val = val
         self.key = key
         self.left = left
@@ -68,42 +68,43 @@ def insert(tree, key, val) -> BSTNode:
     # elif tree.key < key:
     #     tree.right = insert(tree.right, key, val)
     tree = insert_helper(tree, key, val)
-    tree.color = 'b'
+    tree.color = 'black'
     return tree
 
 
 def rebalance(tree):
     #rrb pattern
-    if tree.color == 'b' and tree.left and tree.left.color == 'r' \
-            and tree.left.left and tree.left.left.color == 'r':
+    if tree.color == 'black' and tree.left and tree.left.color == 'red' \
+            and tree.left.left and tree.left.left.color == 'red':
         #convert to brb
-        return BSTNode(tree.left.key, tree.left.val, color='r',
+        return BSTNode(tree.left.key, tree.left.val, color='red',
                        left=BSTNode(tree.left.left.key, tree.left.left.val,
-                                    left=tree.left.left.left, right=tree.left.left.right, color='b'),
-                       right=BSTNode(tree.key, tree.val, tree.left.right, tree.right, 'b'))
+                                    left=tree.left.left.left, right=tree.left.left.right, color='black'),
+                       right=BSTNode(tree.key, tree.val, tree.left.right, tree.right, 'black'))
     #rbr pattern
-    elif tree.color =='b' and tree.left and tree.left.color =='r' \
-            and tree.left.right and tree.left.right.color =='r':
+    elif tree.color =='black' and tree.left and tree.left.color =='red' \
+            and tree.left.right and tree.left.right.color =='red':
         #convert to brb
-        return BSTNode(tree.left.right.key, tree.left.right.val, color='r',
-                       left=BSTNode(tree.left.key, tree.left.val, tree.left.left, tree.left.right.left, color='b'),
-                       right=BSTNode(tree.key,tree.val, tree.left.right.right, tree.right, color='b'))
+        return BSTNode(tree.left.right.key, tree.left.right.val, color='red',
+                       left=BSTNode(tree.left.key, tree.left.val, tree.left.left, tree.left.right.left, color='black'),
+                       right=BSTNode(tree.key,tree.val, tree.left.right.right, tree.right, color='black'))
 
     #brr pattern
-    elif tree.color =='b' and tree.right and tree.right.color =='r' \
-            and tree.right.left and tree.right.left.color =='r':
+    elif tree.color =='black' and tree.right and tree.right.color =='red' \
+            and tree.right.left and tree.right.left.color =='red':
         #convert to brb
-        return BSTNode(tree.right.left.key, tree.right.left.val, color='r',
-                       right=BSTNode(tree.right.key, tree.right.val, tree.right.left.right, tree.right.right, color='b'),
-                       left=BSTNode(tree.key,tree.val, tree.left, tree.right.left.left, color='b'))
+        return BSTNode(tree.right.left.key, tree.right.left.val, color='red',
+                       right=BSTNode(tree.right.key, tree.right.val, tree.right.left.right, tree.right.right, color='black'),
+                       left=BSTNode(tree.key,tree.val, tree.left, tree.right.left.left, color='black'))
     #brr pattern
-    elif tree.color =='b' and tree.right and tree.right.color =='r' \
-            and tree.right.right and tree.right.right.color == 'r':
+    elif tree.color =='black' and tree.right and tree.right.color =='red' \
+            and tree.right.right and tree.right.right.color == 'red':
         #convert to brb
-        return BSTNode(tree.right.key, tree.right.val, color='r',
-                       left=BSTNode(tree.key, tree.val, tree.left, tree.right.left, 'b'),
+        return BSTNode(tree.right.key, tree.right.val, color='red',
+                       left=BSTNode(tree.key, tree.val, tree.left, tree.right.left, 'black'),
                        right=BSTNode(tree.right.right.key, tree.right.right.val,
-                                    left=tree.right.right.left, right=tree.right.right.right, color='b'))
+                                    left=tree.right.right.left, right=tree.right.right.right, color='black'))
+    return tree
 
 
 def insert_helper(tree, key, val) -> BSTNode:

@@ -238,7 +238,7 @@ def import_classmates(filename):
         #put the classmate into the tree_map using its sid as the key
     #---------- ----
     for i in range(len(classmates)):
-        tree_map.put(classmates[i].sid, classmate)
+        tree_map.put(classmates[i].sid, classmates[i])
     return tree_map
 
 
@@ -256,6 +256,46 @@ def search_classmate(tmap, sid):
     if sid in tmap:
         return tmap[sid]
     else:
-        raise KeyError("A classmate with the id: %d does not exist!" % (sid)) 
+        raise KeyError("A classmate with the id: %d does not exist!" % (sid))
 
+def visualizer(tmap, filename):
+    with open(filename, 'w') as file:
+        file.write('digraph T {\n')
+        visualizer_helper(tmap.tree, file)
+        file.write('}\n')
+
+
+def visualizer_helper(tree, file):
+    if tree is None:
+        return
+
+    file.write(str(tree.key))
+    file.write(' ')
+    file.write('[')
+    file.write('color=')
+    file.write(tree.color)
+    file.write(', label="')
+    file.write(str(tree.key))
+    file.write(' ')
+    file.write(':')
+    file.write(' ')
+    file.write(str(tree.val.last))
+    file.write('"];\n')
+    if tree.left:
+        file.write(str(tree.key))
+        file.write(' -> ')
+        file.write(str(tree.left.key))
+        file.write(';\n')
+    if tree.right:
+        file.write(str(tree.key))
+        file.write(' -> ')
+        file.write(str(tree.right.key))
+        file.write(';\n')
+    visualizer_helper(tree.left, file)
+    visualizer_helper(tree.right, file)
+
+
+if __name__ == '__main__':
+    tmap = import_classmates('2202-cpe202-05.tsv')
+    visualizer(tmap, 'classmates.dot')
 

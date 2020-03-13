@@ -1,6 +1,6 @@
 import unittest
 
-import bstree_rb as bst
+import bst_rb as bst
 from lab10 import TreeMap, import_classmates, search_classmate
 
 class MyTest(unittest.TestCase):
@@ -62,12 +62,12 @@ class MyTest(unittest.TestCase):
         self.assertEqual(t.range_search(2, 5), ['two', 'three', 'four'])
 
     def test_classmates(self):
-        filename = 'specify your path and file name'
+        filename = '2202-cpe202-05.tsv'
         t = import_classmates(filename)
         #change the following three lines
-        #self.assertEqual(t.size(), 55)
-        #v = search_classmate(t, 1)
-        #self.assertEqual(v.major, 'MATH')
+        self.assertEqual(t.size(), 38)
+        v = search_classmate(t, 1)
+        self.assertEqual(v.major, 'BMED')
         self.assertRaises(KeyError, search_classmate, t, 0)
 
 if __name__ == '__main__':
