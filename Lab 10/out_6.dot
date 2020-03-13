@@ -1,0 +1,26 @@
+digraph T {
+2
+2 [label=<<font color="black">2 : Chandrasekaran</font>>];
+2 -> 1
+1 [label=<<font color="black">1 : Casino</font>>];
+
+
+
+2 -> 4
+4 [label=<<font color="red">4 : Cheng</font>>];
+4 -> 3
+3 [label=<<font color="black">3 : Chen</font>>];
+
+
+
+4 -> 5
+5 [label=<<font color="black">5 : Cho</font>>];
+
+5 -> 6
+6 [label=<<font color="red">6 : Choi</font>>];
+
+
+
+
+
+}

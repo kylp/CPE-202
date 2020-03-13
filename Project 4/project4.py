@@ -14,7 +14,7 @@ def main(dir_name):
     while True:
         query = input('Enter search query: ')
         if query.startswith('q'):
-            print('goodbye world')
+            print('goodbye world ')
             break
         elif query.startswith('s:'):
 
